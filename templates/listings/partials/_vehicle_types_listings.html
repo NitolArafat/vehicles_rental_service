@@ -1,0 +1,47 @@
+            <div class="row">
+             <!-- all Listing 5 -->
+             {% if listings%}
+              {% for listing in listings %}
+
+                <div class="col-md-4 col-lg-4 mb-4">
+                  <div class="card listing-preview">
+                    <img height="200" class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
+                    <div class="card-img-overlay">
+                      <p>
+                        {% if listing.is_booked %}
+                        <span class="badge badge-warning text-white">Booked</span>
+                        {% endif %}
+                      </p>
+                    </div>
+                    <div class="card-body">
+                      <div class="listing-heading text-center">
+                        <h4 class="text-primary">{{ listing.title }}</h4>
+                        <span style="font-size: 18px;">
+                          <i class="fas fa-money-bill-alt"></i> Daily: {{ listing.price_per_day}}
+                        </span> &nbsp;
+                        <span style="font-size: 18px;">
+                          <i class="fas fa-money-bill-alt"></i>
+                          km: {{ listing.price_per_km}}
+                        </span>
+                      </div>
+                      <hr>
+                      <div class="row py-2  attribute_text">
+                        <div class="col-6">
+<!--                          <i class="fas fa-th-large"></i>-->
+                          CC: {{ listing.cc }}</div>
+                        <div class="col-6">
+<!--                          <i class="fas fa-car"></i> -->
+                          Color: {{ listing.color }}</div>
+                      </div>
+
+                      <a href="{% url 'listing' listing.id %}" class="btn more_info_button btn-block">More Info</a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+             {% else %}
+                <div class="col-md-9">
+                  No Listing Available
+                </div>
+             {% endif %}
+           <div>

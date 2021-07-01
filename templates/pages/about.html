@@ -1,0 +1,135 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">About Nitol Express</h1>
+          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="index.html">
+              <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active"> About</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section id="about" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>We Search For The Perfect Vehicle </h2>
+          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+          <img src="{% static '/img/vehicles/CarTruckSuv.png' %}" alt="">
+
+          <p class="mt-4" >
+            <p style="text-align:justify;">
+            www.nitolexpress.com.bd is an online vehicles rental service provider in all over world and has been dealing in this field since long. You can trust us for all your traveling needs. In all over world, we have introduced online booking system and for the ease of travellers, we take all main credit/debit cards like American Express, MasterCard, Discover and Visafor the payments.
+            </p>
+
+            <p style="text-align:justify;">
+            Our vision is to become the number one choice of domestic and foreign travellers. The best thing about us is that with GARIVARA you can relish extremely high quality, consistent, flexible and transparent car rental services that too with no hidden surprises or costs.
+          </p>
+
+          <p style="text-align:justify;">
+
+            We want that everyone who travels in all over world should get the best possible transportation experience. Since it is so, we provide different services for the convenience of our consumers. We facilitate your booking with the car rental company and ensure that you get the preferred car if it is available on the fleet.
+            Safety is something that every traveller seeks for.
+          </p>
+
+          <p style="text-align:justify;">
+
+            At www.GARIVARA.com.bd, we cater safe and reliable transport services to our valued customers. We ensure proper safety, quality, customer service and good employee relations. Under our realm, you can experience the world class safety, customer service, professionalism and quality.
+
+          </p>
+
+          <p style="text-align:justify;">
+            Everyone at Garivara is committed to cater the best transport service with best possible safety measures. We value comfort and so provide utmost comfort to each passenger. We believe that we can help customers with the finest means only if we are updated with the latest trends. So, our team is engaged in development, research and implementation of practices and systems.
+          </p>
+
+          <p style="text-align:justify;">
+            With GARIVARA make your traveling easy, comfortable, efficient and stress free. Let our team take the entire burden for you and you focus on exploring new destinations and attending important events. With us, you cannot get late for any event! Indeed, we give wings to our customers with the best transportation means.
+</p>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img class="card-img-top" src="{% static '/img/vehicles/hyundai-elite-i20.png' %}" alt="Seller of the month">
+            <div class="card-body">
+              <h5 class="card-title">Top Rent Of The Month</h5>
+              <h6 class="text-secondary">Maruti Suzuki Alto-800</h6>
+              <p class="card-text">Lorem psum dolor sit amet consectetur adipisicing elit. Omnis nesciunt amet, illo itaque similique repellat.
+                content.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="bg-dark text-white text-center">
+    <h2 class="display-4">We Work For You</h2>
+    <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem velit aperiam, unde aliquid at similique!</h4>
+    <hr>
+    <a href="listings.html" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="py-5">
+    <div class="container">
+      <h2 class="text-center">Our Team</h2>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <img height="250" src="{% static '/img/directors/nitol arafat.jpg' %}" alt="" class="card-img-top mb-3">
+          <h4>Nitol Arafat</h4>
+          <p class="text-success">
+            <i class="fas fa-award text-success mb-3"></i> Chairman </p>
+          <hr>
+          <p>
+            <i class="fas fa-phone"></i> (555)-555-5555</p>
+          <p>
+            <i class="fas fa-envelope-open"></i> nitol@nitolexpress.com</p>
+        </div>
+
+        <div class="col-md-4">
+          <img height="250" src="{% static '/img/directors/sharukh khan.jpg' %}" alt="" class="card-img-top mb-3">
+          <h4>Sha Rukh Khan</h4>
+          <p class="text-success">CEO</p>
+          <hr>
+          <p>
+            <i class="fas fa-phone"></i> (444)-444-4444</p>
+          <p>
+            <i class="fas fa-envelope-open"></i> sharukhkhan@nitolexpress.com</p>
+        </div>
+
+        <div class="col-md-4">
+          <img height="250" src="{% static '/img/directors/mark jhon.jpg' %}" alt="" class="card-img-top mb-3">
+          <h4>Mark Jhon</h4>
+          <p class="text-success">Co founder</p>
+          <hr>
+          <p>
+            <i class="fas fa-phone"></i> (333)-333-3333</p>
+          <p>
+            <i class="fas fa-envelope-open"></i> markjhon@nitolexpress.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

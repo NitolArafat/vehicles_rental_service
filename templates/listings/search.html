@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--{% if warning %}-->
+<!--    <p>warning : {{ warning }}</p>-->
+<!--{% else %}-->
+<!--    <p>pick up  : {{ pickup }}</p>-->
+<!--    <p>destination : {{ destination }}</p>-->
+<!--    <p>distance : {{ distance }} km</p>-->
+<!--    <p>pickup date : {{ pickup_date }} km</p>-->
+<!--    <p>return date : {{ return_date }} km</p>-->
+<!--    <p>Days : {{ days }} day</p>-->
+<!--    <p>vehicle_type_value : {{ vehicle_type_value }}</p>-->
+
+<!--{% endif %}-->
+
+  <section id="showcase-inner" class="showcase-search text-white py-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <form action="{% url 'search' %}">
+            <!-- Form Row 1 -->
+            <div class="form-row" >
+
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">pickUp</label>
+                  <input type="text" value="{{ pickup }}" required name="pickup_point" class="form-control" placeholder="Pick Up Point">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">Destination</label>
+                  <input type="text" value="{{ destination }}" required name="destination" class="form-control" placeholder="Destination">
+                </div>
+            </div>
+              <!-- Form Row 2 -->
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">vehicles type</label>
+                  <select name="vehicle_type"  class="form-control" required>
+                    <option   disabled="disabled">Select Vehicle Type</option>
+                      {% for vehicle_type in all_vehicle_types %}
+                        <option  value="{{ vehicle_type.id }}"
+                        {% if vehicle_type_value == vehicle_type.id %}
+                           selected="true"
+                        {% endif %}
+                        >{{ vehicle_type.type_name }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">pick up date</label>
+                  <div class="input-group date" >
+                      <input type="text" value="{{ pickup_date }}"   required name="pickup_date" class="form-control" placeholder="Pick up date" id="datetimepicker">
+                      <div class="input-group-addon input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Form Row 3 -->
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">return date</label>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="myCheck"
+                      onclick="checkdays()"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Reserved for Day(s)
+                    </label>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label class="sr-only">Days</label>
+                  <div class="input-group date" >
+                    <input type="number" name="days" value="{{ days }}" id="return_date" class="form-control" placeholder="days" style="display: none;">
+                    <span>Return date : {{ return_date }}</span>
+
+                  </div>
+
+                </div>
+              </div>
+
+              {% if user.is_authenticated %}
+                <button class="btn  btn-block mt-4 search_button" type="submit">Search</button>
+              {% else %}
+              <button class="btn  btn-block mt-4 search_button" onclick="search_login()" id="demo" type="button">Search</button>
+              <p id="link" style="display: none;">
+                <a href="{% url 'login' %}" style="color:white">click here for login  </a>
+              </p>
+              {% endif %}
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="index.html">
+              <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="listings.html">Browse Listings</a>
+          </li>
+          <li class="breadcrumb-item active"> Search Results</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Listings -->
+  <section id="listings" class="py-4">
+    <div class="container">
+      <div class="row">
+
+        <!-- all Listing -->
+        {% if listings %}
+            {% for listing in listings  %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="card listing-preview">
+                    <img height="250" class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
+                    <div class="card-img-overlay">
+                      <p>
+                        {% if listing.is_booked %}
+                        <span class="badge badge-warning text-white">Booked</span>
+                        {% endif %}
+                      </p>
+                    </div>
+
+                    <div class="card-body">
+                      <div class="listing-heading text-center">
+                        <h4 class="text-primary">{{ listing.title }}</h4>
+                        <p>
+                          <i class="fa fa-money text-secondary"></i>
+
+                          {% if days %}
+                              <span class="badge badge-notify-taka">৳</span>
+                              <span class="text-black price_section_text">{% widthratio listing.price_per_day 1 days %}</span>
+                              <span class="badge badge-notify">/ for {{ days }} day(s)</span>
+                          {%  elif distance %}
+                              <span class="badge badge-notify-taka">৳</span>
+                              <span class="text-black price_section_text">{% widthratio listing.price_per_km 1 distance %}</span>
+                              <span class="badge badge-notify">/{{ distance   }} km </span>
+                          {% else %}
+                            <span>per km: {{ listing.price_per_km }}tk </span>&nbsp; &nbsp;&nbsp;<span> per day: {{ listing.price_per_day }}tk</span>
+                          {% endif %}
+
+                        </p>
+                      </div>
+                      <hr>
+                      <div class="row py-2 text-secondary">
+                        <div class="col-6">
+                          <i class="fas fa-chear"></i> Seat: 4</div>
+                        <div class="col-6">
+                          <i class="fas fa-car"></i> Color: Red</div>
+                      </div>
+                      <div class="row py-2 text-secondary">
+                        <div class="col-6">
+                          <i class="fas fa-bed"></i> Bag: 3</div>
+                        <div class="col-6">
+                          <i class="fas fa-bath"></i> CC1300</div>
+                      </div>
+
+                      <hr>
+                      <a href="{% url 'listing' listing.id%}" class="btn more_info_button btn-block">More Info</a>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+{% endblock %}

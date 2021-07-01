@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rental Services</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static '/css/all.css' %}">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+  <!-- Custom -->
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+   <!-- datetimepicker -->
+  <link rel="stylesheet" href="{% static '/css/bootstrap-datetimepicker.min.css' %}">
+ <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+  <!-- Top Bar -->
+    {% include 'partials/_topbar.html' %}
+  <!-- Navbar -->
+    {% include 'partials/_navbar.html' %}
+
+{% block content %}
+{% endblock %}
+
+
+  <!-- Footer -->
+    {% include 'partials/_footer.html' %}
+
+  <script src="{% static '/js/jquery-3.3.1.min.js' %} "></script>
+  <script src="{% static '/js/bootstrap.bundle.min.js' %} "></script>
+  <script src="{% static '/js/main.js' %} "></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"> </script>
+
+  <script src="{% static '/js/bootstrap-datetimepicker.min.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <!-- or -->
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+
+
+  <script>
+      $(function () {
+          $.extend(true, $.fn.datetimepicker.defaults, {
+              icons: {
+                  time: 'far fa-clock',
+                  date: 'far fa-calendar',
+                  up: 'fas fa-arrow-up',
+                  down: 'fas fa-arrow-down',
+                  previous: 'fas fa-chevron-left',
+                  next: 'fas fa-chevron-right',
+                  today: 'far fa-calendar-check-o',
+                  clear: 'far fa-trash',
+                  close: 'far fa-times'
+              }
+          });
+      });
+  </script>
+  <script type="text/javascript">
+          $(function () {
+              $('#datetimepicker').datetimepicker({
+<!--                format: 'YYYY-MM-DD hh:mm :A',-->
+                sideBySide: true
+              });
+          });
+<!--          $(function () {-->
+<!--              $('#return_date').datetimepicker({-->
+
+<!--                sideBySide: true-->
+<!--              });-->
+<!--          });-->
+
+          function checkdays() {
+            if (document.getElementById('myCheck').checked) {
+                document.getElementById('return_date').style.display = 'block';
+            } else {
+                document.getElementById('return_date').style.display = 'none';
+            }
+          }
+  </script>
+<script>
+function search_login()
+  {
+      document.getElementById("demo").innerHTML = 'Login is Required ';
+      if (document.getElementById('link').checked) {
+         document.getElementById('link').style.display = 'none';
+      } else {
+        document.getElementById('link').style.display = 'block';
+      }
+  }
+
+function order_booked(){
+
+      document.getElementById("order_booked_id").innerHTML = 'Already Booked ';
+      if (document.getElementById('notice').checked) {
+         document.getElementById('notice').style.display = 'none';
+      } else {
+        document.getElementById('notice').style.display = 'block';
+      }
+
+}
+
+function place_order()
+  {
+      document.getElementById("demo").innerHTML = ' fill Pickup & destination fields';
+      if (document.getElementById('link').checked) {
+         document.getElementById('link').style.display = 'none';
+      } else {
+        document.getElementById('link').style.display = 'block';
+      }
+  }
+</script>
+</body>
+</html>

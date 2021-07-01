@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+  <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">Find Your Car</h1>
+          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">
+              <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active"> Browse Listings</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Listings -->
+  <section id="listings" class="py-4">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="sidebar">
+                <div class="sidebar__item">
+                    <h4>Vehicles type</h4>
+                      {% if vehicle_types %}
+                        <ul>
+                          {% for vehicle_type in vehicle_types %}
+                            <li><a href="{% url 'listing_type' vehicle_type.id%}">{{ vehicle_type.type_name | title }}</a></li>
+                          {% endfor %}
+                         </ul>
+                      {% else %}
+                       No Type Available
+                      {% endif %}
+                </div>
+            </div>
+
+
+          </div>
+          <div class="col-md-9">
+<!--              include 'listings/partials/_vehicle_types_listings.html' -->
+            <div class="row">
+             <!-- all Listing 5 -->
+             {% if listings%}
+              {% for listing in listings %}
+
+                <div class="col-md-4 col-lg-4 mb-4">
+                  <div class="card listing-preview">
+                    <img height="200" class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
+                    <div class="card-img-overlay">
+                      <p>
+                        {% if listing.is_booked %}
+                        <span class="badge badge-warning text-white">Booked</span>
+                        {% endif %}
+                      </p>
+                    </div>
+                    <div class="card-body">
+                      <div class="listing-heading text-center">
+                        <h4 class="text-primary">{{ listing.title }}</h4>
+                        <span style="font-size: 18px;">
+                          <i class="fas fa-money-bill-alt"></i> Daily: {{ listing.price_per_day}}
+                        </span> &nbsp;
+                        <span style="font-size: 18px;">
+                          <i class="fas fa-money-bill-alt"></i>
+                          km: {{ listing.price_per_km}}
+                        </span>
+                      </div>
+                      <hr>
+                      <div class="row py-2  attribute_text">
+                        <div class="col-6">
+<!--                          <i class="fas fa-th-large"></i>-->
+                          CC: {{ listing.cc }}</div>
+                        <div class="col-6">
+<!--                          <i class="fas fa-car"></i> -->
+                          Color: {{ listing.color }}</div>
+                      </div>
+
+                      <a href="{% url 'listing' listing.id %}" class="btn more_info_button btn-block">More Info</a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+             {% else %}
+                <div class="col-md-9">
+                  No Listing Available
+                </div>
+             {% endif %}
+           <div>
+          </div>
+    </div>
+    <br>
+      <div class="row">
+        <div class="col-md-12">
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+        {% if listings.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ listings.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        {% for i in listings.paginator.page_range %}
+            {% if listings.number == i %}
+                <li class="page-item active"><a class="page-link">{{ i }}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{ i }}</a></li>
+            {% endif %}
+    {% endfor %}
+        {% if listings.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ listings.next_page_number }}">Next</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ listings.paginator.num_pages }}">Last</a></li>
+        {% endif %}
+
+  </ul>
+        <div class="current">
+            Page {{ listings.number }} of {{ listings.paginator.num_pages }}.
+      </div>
+</nav>
+
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock %}

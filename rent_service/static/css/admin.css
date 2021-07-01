@@ -1,0 +1,28 @@
+#header {
+    background: rgb(255, 105, 15) !important;
+    color: #fff;
+}
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #fff;
+}
+.module h2, .module caption, .inline-group h2 {
+
+    background: linear-gradient(135deg,#e55e0d 0%,#cf3218 100%);
+
+}
+div.breadcrumbs {
+    background: #fca903;
+    color: #fff;
+
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: linear-gradient(135deg,#e55e0d 0%,#cf3218 100%);
+
+}
+
+
+.button.default, input[type=submit].default, .submit-row input.default {
+
+     background: green;
+}

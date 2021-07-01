@@ -1,0 +1,37 @@
+from django.db import models
+from ckeditor.fields import RichTextField
+
+class Settings(models.Model):
+    phone = models.CharField(max_length=30)
+    email = models.CharField(max_length=50)
+    twitter = models.CharField(max_length=100, null=True, blank=True)
+    facebook = models.CharField(max_length=100, null=True, blank=True)
+    linkedin = models.CharField(max_length=100, null=True, blank=True)
+    unstagram = models.CharField(max_length=100, null=True, blank=True)
+    footer_text_1 = RichTextField(null=True, blank=True)
+    footer_text_2 = RichTextField(null=True, blank=True)
+    footer_text_3 = RichTextField(null=True, blank=True)
+    about_title = models.CharField(max_length=300)
+    about_sub_title = models.CharField(max_length=300)
+    about_description = RichTextField(null=True, blank=True)
+    team_member_1_name = models.CharField(max_length=300)
+    team_member_1_designation = models.CharField(max_length=40)
+    team_member_1_phone = models.CharField(max_length=30)
+    team_member_1_email = models.CharField(max_length=100)
+    team_member_1_image = models.ImageField(upload_to='photo/%y/%m/%d' , blank=True)
+    team_member_2_name = models.CharField(max_length=300)
+    team_member_2_designation = models.CharField(max_length=40)
+    team_member_2_phone = models.CharField(max_length=30)
+    team_member_2_email = models.CharField(max_length=100)
+    team_member_2_image = models.ImageField(upload_to='photo/%y/%m/%d' , blank=True)
+    team_member_3_name = models.CharField(max_length=300)
+    team_member_3_designation = models.CharField(max_length=40)
+    team_member_3_phone = models.CharField(max_length=30)
+    team_member_3_email = models.CharField(max_length=100)
+    team_member_3_image = models.ImageField(upload_to='photo/%y/%m/%d' , blank=True)
+    about_main_image = models.ImageField(upload_to='photo/%y/%m/%d' , blank=True)
+
+    top_rent = models.CharField(max_length=300)
+    top_rent_descriptions = models.CharField(max_length=200)
+    top_rent_image = models.ImageField(upload_to='photo/%y/%m/%d' , blank=True)
+

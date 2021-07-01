@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+{% if warning %}
+    <p>warning : {{ warning }}</p>
+{% else %}
+    <p>pick up  : {{ pickup }}</p>
+    <p>destination : {{ destination }}</p>
+    <p>distance : {{ distance }} km</p>
+    <p>price : {{ price }} tk</p>
+{% endif %}
+
+</body>
+</html>
